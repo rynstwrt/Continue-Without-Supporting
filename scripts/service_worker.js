@@ -12,8 +12,8 @@
 //     });
 // }
 
-chrome.runtime.onMessage.addListener(msg =>
-{
-    console.log(msg);
-    return true;
-});
+// chrome.runtime.onMessage.addListener(msg =>
+// {
+//     console.log(msg);
+//     return true;
+// });

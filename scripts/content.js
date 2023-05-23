@@ -1,11 +1,5 @@
 const storageKey = "CWS_storage";
-let phrases = ["continue without supporting"];
-
-/*
-    1. on load, get phrases from storage and set textarea
-    2.
-*/
-
+let phrases = ["continue without supporting", "A", "B", "C"];
 
 
 function getPhrases()
@@ -32,30 +26,26 @@ function savePhrases()
 //     sendResponse("TEST");
 // });
 
-function sendMessageToPopup(action, data)
-{
-    chrome.runtime.sendMessage({
-        action: action,
-        data: data,
-    }, response =>
-    {
-        // console.log(response);
-    });
-}
+// function sendMessageToPopup(action, data)
+// {
+//     chrome.runtime.sendMessage({
+//         action: action,
+//         data: data,
+//     }, response =>
+//     {
+//         // console.log(response);
+//     });
+// }
 
 
 chrome.runtime.onMessage.addListener((req, sender, sendResponse) =>
 {
-    if (req["type"] === "getPhrases")
+    if (req.type === "getPhrases")
     {
-        getPhrases.then(phrases =>
-        {
-            console.log("SENDING PHRASES");
-            console.log(phrases);
-            sendResponse(phrases);
-            return true;
-        });
+        sendResponse(phrases);
     }
+
+    return true;
 });
 
 

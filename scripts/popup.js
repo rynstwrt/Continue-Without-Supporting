@@ -1,6 +1,6 @@
 const textArea = document.querySelector("#phrases-textarea");
 const saveButton = document.querySelector("#save-button");
-let phrases;
+let phrases = [];
 
 
 async function getCurrentTab()
@@ -12,10 +12,20 @@ async function getCurrentTab()
 
 function sendMessageToContent(type)
 {
-    getCurrentTab().then(async tab =>
+    getCurrentTab().then(tab =>
     {
-        const response = await chrome.tabs.sendMessage(tab.id, type);
-        textArea.innerHTML = response;
+        chrome.tabs.sendMessage(tab.id, {type: type}, resp =>
+        {
+            phrases = resp ? resp : [];
+
+            let lines = "";
+            phrases.forEach((phrase, i) =>
+            {
+                lines += phrase + (i === phrases.length - 1 ? "" : "\n");
+            });
+
+            textArea.innerHTML = lines;
+        });
     });
 }
 
