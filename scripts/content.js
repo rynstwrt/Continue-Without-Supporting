@@ -1,5 +1,5 @@
 const CHECK_INTERVAL_MS = 250;
-const PHRASES = ["Without Supporting"];
+const PHRASES = ["without supporting", "without disabling"];
 
 
 setInterval(() =>
@@ -10,7 +10,7 @@ setInterval(() =>
     {
         PHRASES.forEach(phrase =>
         {
-            if (el.textContent.includes(phrase))
+            if (el.textContent.toLowerCase().includes(phrase.toLowerCase()))
             {
                 el.click();
             }
