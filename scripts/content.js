@@ -1,55 +1,19 @@
-const storageKey = "CWS_storage";
-let phrases = ["continue without supporting", "A", "B", "C"];
+const CHECK_INTERVAL_MS = 250;
+const PHRASES = ["Without Supporting"];
 
 
-function getPhrases()
+setInterval(() =>
 {
-    return new Promise((res, rej) =>
+    const elements = document.querySelectorAll("*");
+
+    elements.forEach(el =>
     {
-        chrome.storage.sync.get("a", obj =>
+        PHRASES.forEach(phrase =>
         {
-            res(obj[storageKey]);
+            if (el.textContent.includes(phrase))
+            {
+                el.click();
+            }
         });
     });
-}
-
-
-function savePhrases()
-{
-    chrome.storage.sync.set({[storageKey]: phrases});
-}
-
-
-// chrome.runtime.onMessage.addListener((request, sender, sendResponse) =>
-// {
-//     console.log(request, sender, sendResponse);
-//     sendResponse("TEST");
-// });
-
-// function sendMessageToPopup(action, data)
-// {
-//     chrome.runtime.sendMessage({
-//         action: action,
-//         data: data,
-//     }, response =>
-//     {
-//         // console.log(response);
-//     });
-// }
-
-
-chrome.runtime.onMessage.addListener((req, sender, sendResponse) =>
-{
-    if (req.type === "getPhrases")
-    {
-        sendResponse(phrases);
-    }
-
-    return true;
-});
-
-
-getPhrases().then(p =>
-{
-    phrases = p ? phrases.concat(p) : phrases;
-});
+}, CHECK_INTERVAL_MS);
