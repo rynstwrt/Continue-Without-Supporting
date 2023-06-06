@@ -2,7 +2,7 @@
     "manifest_version": 3,
     "name": "Continue Without Supporting",
     "version": "1.0.0",
-    "description": "A browser extension that auto-clicks on \"continue without supporting\" or similar phrases when given a popup about disabling adblock.",
+    "description": "Browser extension that auto-clicks on \"continue without supporting\"/similar phrases when given a popup about disabling ad blocking.",
     "content_scripts": [
         {
             "js": ["scripts/content.js"],
@@ -13,6 +13,4 @@
         "16": "assets/16.png",
         "48": "assets/48.png",
         "128": "assets/128.png"
-    },
-    "permissions": ["*"]
-}
+    }}

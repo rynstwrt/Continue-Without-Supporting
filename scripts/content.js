@@ -1,12 +1,18 @@
 const CHECK_INTERVAL_MS = 500;
 const CHECK_TIMEOUT_SECONDS = 10;
 const PHRASES = ["continue without supporting", "continue without disabling"];
+const CONSOLE_PREFIX = "CONTINUE WITHOUT SUPPORTING: ";
+const DEV_MODE = false;
 
 const startTime = Date.now();
 const interval = setInterval(() =>
 {
     if (Date.now() - startTime > CHECK_TIMEOUT_SECONDS * 1000)
+    {
+        if (DEV_MODE)
+            console.log(CONSOLE_PREFIX + "Timed out. No relevant links found.");
         clearInterval(interval);
+    }
 
     let hasFound = false;
     document.querySelectorAll("*").forEach(el =>
@@ -18,7 +24,9 @@ const interval = setInterval(() =>
                 if (!hasFound)
                 {
                     hasFound = true;
-                    // alert("CLICK");
+
+                    if (DEV_MODE)
+                        console.log(CONSOLE_PREFIX + "Found a link! Clicking!");
                 }
 
                 el.click();
