@@ -2,7 +2,7 @@
     "manifest_version": 3,
     "name": "Continue Without Supporting",
     "version": "1.0.0",
-    "description": "A browser extension that automatically clicks on \"continue without supporting\" or similar phrases when given a popup about whitelisting their site.",
+    "description": "A browser extension that auto-clicks on \"continue without supporting\" or similar phrases when given a popup about disabling adblock.",
     "content_scripts": [
         {
             "js": ["scripts/content.js"],
