@@ -4,13 +4,13 @@ const PHRASES = ["continue without supporting", "continue without disabling"];
 const CONSOLE_PREFIX = "CONTINUE WITHOUT SUPPORTING: ";
 const DEV_MODE = false;
 
+
 const startTime = Date.now();
 const interval = setInterval(() =>
 {
     if (Date.now() - startTime > CHECK_TIMEOUT_SECONDS * 1000)
     {
-        if (DEV_MODE)
-            console.log(CONSOLE_PREFIX + "Timed out. No relevant links found.");
+        if (DEV_MODE) console.log(CONSOLE_PREFIX + "Timed out. No relevant links found.");
         clearInterval(interval);
     }
 
@@ -24,9 +24,7 @@ const interval = setInterval(() =>
                 if (!hasFound)
                 {
                     hasFound = true;
-
-                    if (DEV_MODE)
-                        console.log(CONSOLE_PREFIX + "Found a link! Clicking!");
+                    if (DEV_MODE) console.log(CONSOLE_PREFIX + "Found a link! Clicking!");
                 }
 
                 el.click();
@@ -35,3 +33,6 @@ const interval = setInterval(() =>
         });
     });
 }, CHECK_INTERVAL_MS);
+
+
+
