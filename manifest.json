@@ -3,7 +3,6 @@
     "name": "Continue Without Supporting",
     "version": "1.0.0",
     "description": "Automatically select 'continue without supporting' on popups about ad blockers.",
-    "permissions": ["storage", "activeTab"],
     "content_scripts": [
         {
             "js": ["scripts/content.js"],

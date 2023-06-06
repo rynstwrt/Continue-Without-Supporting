@@ -1,18 +1,28 @@
-const CHECK_INTERVAL_MS = 250;
-const PHRASES = ["without supporting", "without disabling"];
+const CHECK_INTERVAL_MS = 500;
+const CHECK_TIMEOUT_SECONDS = 10;
+const PHRASES = ["continue without supporting", "continue without disabling"];
 
-
-setInterval(() =>
+const startTime = Date.now();
+const interval = setInterval(() =>
 {
-    const elements = document.querySelectorAll("*");
+    if (Date.now() - startTime > CHECK_TIMEOUT_SECONDS * 1000)
+        clearInterval(interval);
 
-    elements.forEach(el =>
+    let hasFound = false;
+    document.querySelectorAll("*").forEach(el =>
     {
         PHRASES.forEach(phrase =>
         {
             if (el.textContent.toLowerCase().includes(phrase.toLowerCase()))
             {
+                if (!hasFound)
+                {
+                    hasFound = true;
+                    // alert("CLICK");
+                }
+
                 el.click();
+                clearInterval(interval);
             }
         });
     });
